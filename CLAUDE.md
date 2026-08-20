@@ -23,6 +23,24 @@ A single-page task board built with React 19 + TypeScript + Vite.
 - Styling is plain CSS (`src/index.css` for global tokens/light-dark theme variables,
   `src/App.css` for task-board-specific styles) — no CSS framework.
 
+## 技術スタック
+
+- フレームワーク: React 19(関数コンポーネント + Hooksのみ、クラスコンポーネントは使わない)
+- 言語: TypeScript
+- ビルドツール: Vite(`@vitejs/plugin-react`)
+- Lint: Oxlint(`npm run lint`)
+- スタイリング: プレーンCSS(CSSフレームワーク・CSS-in-JSは未使用)
+- 状態管理: Reactの`useState`/`useEffect`のみ(Redux等の外部状態管理ライブラリは未使用)
+- データ永続化: ブラウザの`localStorage`(バックエンド・DBは無し)
+- デプロイ: GitHub Actions経由でGitHub Pagesへ公開
+
+## コンポーネントの命名規則
+
+- コンポーネントファイルは`src/components/`配下にPascalCaseで配置し、1ファイル1コンポーネントとする。ファイル名・`export default`する関数名・コンポーネント名を一致させる(例: `TaskForm.tsx` → `function TaskForm`)。
+- Propsの型は`<コンポーネント名>Props`という名前のinterfaceとして定義する(例: `TaskFormProps`、`TaskItemProps`)。
+- 子から親へ渡すイベントハンドラのprop名は`on`+動詞とする(例: `onAdd`、`onToggle`、`onDelete`)。それを受けて実際に状態を更新する親側の関数は、動詞+対象名とする(例: `addTask`、`toggleTask`、`deleteTask`)。
+- CSSクラス名はkebab-caseとし、`task-`プレフィックスの後にコンポーネント名・要素名を続ける(例: `task-board`、`task-form`、`task-item`、`task-item-completed`、`task-delete-button`)。BEMのような厳密な記法は使わず、意味の分かる単語をハイフンでつなぐ簡潔な命名に統一する。
+
 ## GitHubリポジトリ
 
 https://github.com/Ryoji-A/task-board.git
