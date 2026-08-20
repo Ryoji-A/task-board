@@ -2,10 +2,25 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-## Project status
+## Commands
 
-This repository is currently empty (no source files, README, or git history yet). This file will be
-updated with build/lint/test commands and an architecture overview once the codebase is established.
+- `npm run dev` — start the Vite dev server (http://localhost:5173)
+- `npm run build` — type-check (`tsc -b`) and build for production
+- `npm run lint` — run Oxlint
+- `npm run preview` — preview the production build locally
+
+## Architecture
+
+A single-page task board built with React 19 + TypeScript + Vite.
+
+- `src/App.tsx` — owns all task state (`useState<Task[]>`) and the CRUD handlers (`addTask`,
+  `toggleTask`, `deleteTask`); passes them down as props. State is in-memory only (no persistence).
+- `src/components/` — `TaskForm` (controlled input, calls `onAdd`), `TaskList` (renders `TaskItem`s
+  or an empty-state message), `TaskItem` (checkbox + text + delete button; applies the
+  `task-item-completed` class for completed tasks).
+- `src/types.ts` — the shared `Task` interface (`id`, `text`, `completed`).
+- Styling is plain CSS (`src/index.css` for global tokens/light-dark theme variables,
+  `src/App.css` for task-board-specific styles) — no CSS framework.
 
 ## GitHubリポジトリ
 
