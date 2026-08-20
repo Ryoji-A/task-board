@@ -27,6 +27,14 @@ A single-page task board built with React 19 + TypeScript + Vite.
 
 https://github.com/Ryoji-A/task-board.git
 
+## Deployment
+
+Deployed to GitHub Pages at https://ryoji-a.github.io/task-board/ via
+`.github/workflows/deploy.yml`, which builds and publishes `dist/` on every push to `main`
+(requires the repo's Settings → Pages → Build and deployment → Source to be set to "GitHub
+Actions"). `vite.config.ts` sets `base: '/task-board/'` to match the Pages sub-path — update it if
+the repo is ever renamed.
+
 ## Git workflow rules
 
 - This project's code is tracked in Git and pushed to GitHub (remote `origin`: the repository above).
