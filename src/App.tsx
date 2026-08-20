@@ -1,6 +1,7 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import TaskForm from './components/TaskForm'
 import TaskList from './components/TaskList'
+import { loadTasks, saveTasks } from './storage'
 import type { Task } from './types'
 import './App.css'
 
@@ -12,7 +13,11 @@ const today = new Date().toLocaleDateString('ja-JP', {
 })
 
 function App() {
-  const [tasks, setTasks] = useState<Task[]>([])
+  const [tasks, setTasks] = useState<Task[]>(loadTasks)
+
+  useEffect(() => {
+    saveTasks(tasks)
+  }, [tasks])
 
   const addTask = (text: string) => {
     setTasks((prev) => [...prev, { id: crypto.randomUUID(), text, completed: false }])

@@ -14,7 +14,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 A single-page task board built with React 19 + TypeScript + Vite.
 
 - `src/App.tsx` — owns all task state (`useState<Task[]>`) and the CRUD handlers (`addTask`,
-  `toggleTask`, `deleteTask`); passes them down as props. State is in-memory only (no persistence).
+  `toggleTask`, `deleteTask`); passes them down as props. Tasks are persisted to `localStorage` via
+  `src/storage.ts` (loaded lazily as initial state, saved on every change through a `useEffect`).
 - `src/components/` — `TaskForm` (controlled input, calls `onAdd`), `TaskList` (renders `TaskItem`s
   or an empty-state message), `TaskItem` (checkbox + text + delete button; applies the
   `task-item-completed` class for completed tasks).
